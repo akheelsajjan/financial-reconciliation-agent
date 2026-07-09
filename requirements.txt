@@ -1,0 +1,17 @@
+pdfplumber
+pypdf
+tiktoken
+openai
+pinecone-client
+rank-bm25
+python-dotenv
+tqdm
+pandas
+numpy
+langchain
+langchain-openai
+langchain-community
+langchain-pinecone
+cohere
+requests
+docling
