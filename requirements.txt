@@ -2,7 +2,7 @@ pdfplumber
 pypdf
 tiktoken
 openai
-pinecone-client
+pinecone
 rank-bm25
 python-dotenv
 tqdm
@@ -15,3 +15,5 @@ langchain-pinecone
 cohere
 requests
 docling
+ragas
+langchain-google-vertexai
