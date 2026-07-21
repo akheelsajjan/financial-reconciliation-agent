@@ -933,6 +933,7 @@ dependencies = [
     { name = "cohere" },
     { name = "docling" },
     { name = "fastapi" },
+    { name = "google-generativeai" },
     { name = "groq" },
     { name = "langchain" },
     { name = "langchain-community" },
@@ -957,11 +958,17 @@ dependencies = [
     { name = "uvicorn" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "cohere", specifier = ">=7.0.5" },
     { name = "docling", specifier = ">=2.110.0" },
     { name = "fastapi", specifier = ">=0.139.0" },
+    { name = "google-generativeai", specifier = ">=0.8.6" },
     { name = "groq", specifier = ">=1.5.0" },
     { name = "langchain", specifier = ">=1.3.11" },
     { name = "langchain-community", specifier = ">=0.4.2" },
@@ -985,6 +992,9 @@ requires-dist = [
     { name = "tqdm", specifier = ">=4.68.3" },
     { name = "uvicorn", specifier = ">=0.51.0" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = ">=9.1.1" }]
 
 [[package]]
 name = "frozenlist"
@@ -1090,15 +1100,69 @@ http = [
 ]
 
 [[package]]
+name = "google-ai-generativelanguage"
+version = "0.6.15"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version < '3.14'" },
+    { name = "google-auth" },
+    { name = "proto-plus" },
+    { name = "protobuf" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/11/d1/48fe5d7a43d278e9f6b5ada810b0a3530bbeac7ed7fcbcd366f932f05316/google_ai_generativelanguage-0.6.15.tar.gz", hash = "sha256:8f6d9dc4c12b065fe2d0289026171acea5183ebf2d0b11cefe12f3821e159ec3", size = 1375443, upload-time = "2025-01-13T21:50:47.459Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7c/a3/67b8a6ff5001a1d8864922f2d6488dc2a14367ceb651bc3f09a947f2f306/google_ai_generativelanguage-0.6.15-py3-none-any.whl", hash = "sha256:5a03ef86377aa184ffef3662ca28f19eeee158733e45d7947982eb953c6ebb6c", size = 1327356, upload-time = "2025-01-13T21:50:44.174Z" },
+]
+
+[[package]]
+name = "google-api-core"
+version = "2.25.2"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "python_full_version >= '3.14' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "google-auth", marker = "python_full_version >= '3.14'" },
+    { name = "googleapis-common-protos", marker = "python_full_version >= '3.14'" },
+    { name = "proto-plus", marker = "python_full_version >= '3.14'" },
+    { name = "protobuf", marker = "python_full_version >= '3.14'" },
+    { name = "requests", marker = "python_full_version >= '3.14'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/09/cd/63f1557235c2440fe0577acdbc32577c5c002684c58c7f4d770a92366a24/google_api_core-2.25.2.tar.gz", hash = "sha256:1c63aa6af0d0d5e37966f157a77f9396d820fba59f9e43e9415bc3dc5baff300", size = 166266, upload-time = "2025-10-03T00:07:34.778Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c8/d8/894716a5423933f5c8d2d5f04b16f052a515f78e815dab0c2c6f1fd105dc/google_api_core-2.25.2-py3-none-any.whl", hash = "sha256:e9a8f62d363dc8424a8497f4c2a47d6bcda6c16514c935629c257ab5d10210e7", size = 162489, upload-time = "2025-10-03T00:07:32.924Z" },
+]
+
+[package.optional-dependencies]
+grpc = [
+    { name = "grpcio", marker = "python_full_version >= '3.14'" },
+    { name = "grpcio-status", marker = "python_full_version >= '3.14'" },
+]
+
+[[package]]
 name = "google-api-core"
 version = "2.31.0"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.13.*' and sys_platform == 'win32'",
+    "python_full_version == '3.13.*' and sys_platform == 'emscripten'",
+    "python_full_version == '3.13.*' and sys_platform == 'darwin'",
+    "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'emscripten'",
+    "python_full_version < '3.13' and sys_platform == 'darwin'",
+    "python_full_version < '3.13' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 dependencies = [
-    { name = "google-auth" },
-    { name = "googleapis-common-protos" },
-    { name = "proto-plus" },
-    { name = "protobuf" },
-    { name = "requests" },
+    { name = "google-auth", marker = "python_full_version < '3.14'" },
+    { name = "googleapis-common-protos", marker = "python_full_version < '3.14'" },
+    { name = "proto-plus", marker = "python_full_version < '3.14'" },
+    { name = "protobuf", marker = "python_full_version < '3.14'" },
+    { name = "requests", marker = "python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/c6/22/155cadf1d49272a9cf48f3168c0f3874fa13397297e611a5ea00cd093880/google_api_core-2.31.0.tar.gz", hash = "sha256:2be84ee0f584c48e6bde1b36766e23348b361fb7e55e56135fc76ce1c397f9c2", size = 176492, upload-time = "2026-06-03T14:52:17.257Z" }
 wheels = [
@@ -1107,8 +1171,25 @@ wheels = [
 
 [package.optional-dependencies]
 grpc = [
-    { name = "grpcio" },
-    { name = "grpcio-status" },
+    { name = "grpcio", marker = "python_full_version < '3.14'" },
+    { name = "grpcio-status", marker = "python_full_version < '3.14'" },
+]
+
+[[package]]
+name = "google-api-python-client"
+version = "2.198.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "google-auth" },
+    { name = "google-auth-httplib2" },
+    { name = "httplib2" },
+    { name = "uritemplate" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6b/53/0cd38e3a29d72ce45e27feba2ce1cd8049d69af9c48cb14fb164f1be9133/google_api_python_client-2.198.0.tar.gz", hash = "sha256:dfe3e16fb241af6e9c460a33f65085b3450e05cea09364f6b5d8997fb7e43e2a", size = 15060142, upload-time = "2026-06-25T14:32:42.953Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d5/92/0fc9e7a09eb240c31b879bd8d2e43f81ed1f86c4798b79ead4a083921ab3/google_api_python_client-2.198.0-py3-none-any.whl", hash = "sha256:fabac935474e817da5e662ff61bf7139439d6f92b32d332a7318a2d45931e03e", size = 15644203, upload-time = "2026-06-25T14:32:39.963Z" },
 ]
 
 [[package]]
@@ -1133,23 +1214,75 @@ requests = [
 ]
 
 [[package]]
+name = "google-auth-httplib2"
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "google-auth" },
+    { name = "httplib2" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1c/b3/f192c8bc7e41e0ebdbd95afcae4783417a34b6a6af62d22daf22c3fd38fc/google_auth_httplib2-0.4.0.tar.gz", hash = "sha256:d5b030a204b7a4b4d553ba9ca701b62481ee2b74419325580be70f7d85ffed35", size = 11161, upload-time = "2026-05-07T08:03:46.878Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/97/be/954c35a62b9e31de66b0a43c225c9b6bb9e0f98d6b1dc110a2308e3644f5/google_auth_httplib2-0.4.0-py3-none-any.whl", hash = "sha256:8e55cfafa3358cba85f6cad4a886138e88e158d71e7e5c9ee5936a5c1507fb91", size = 9529, upload-time = "2026-05-07T08:02:12.375Z" },
+]
+
+[[package]]
+name = "google-cloud-aiplatform"
+version = "1.148.1"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "python_full_version >= '3.14' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "docstring-parser", marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version >= '3.14'" },
+    { name = "google-auth", marker = "python_full_version >= '3.14'" },
+    { name = "google-cloud-bigquery", marker = "python_full_version >= '3.14'" },
+    { name = "google-cloud-resource-manager", marker = "python_full_version >= '3.14'" },
+    { name = "google-cloud-storage", version = "3.4.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-genai", version = "1.75.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "packaging", marker = "python_full_version >= '3.14'" },
+    { name = "proto-plus", marker = "python_full_version >= '3.14'" },
+    { name = "protobuf", marker = "python_full_version >= '3.14'" },
+    { name = "pydantic", marker = "python_full_version >= '3.14'" },
+    { name = "typing-extensions", marker = "python_full_version >= '3.14'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c9/f3/b2a9417014c93858a2e3266134f931eefd972c2d410b25d7b8782fc6f143/google_cloud_aiplatform-1.148.1.tar.gz", hash = "sha256:75d605fba34e68714bd08e1e482755d0a6e3ae972805f809d088e686c30879e7", size = 10278758, upload-time = "2026-04-17T23:45:26.738Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/56/5b/e3515d7bbba602c2b0f6a0da5431785e897252443682e4735d0e6873dc8f/google_cloud_aiplatform-1.148.1-py2.py3-none-any.whl", hash = "sha256:035101e2d8e65c6a706cc3930b2452de7ddcbde50dd130320fcea0d8b03b0c5a", size = 8434481, upload-time = "2026-04-17T23:45:22.919Z" },
+]
+
+[[package]]
 name = "google-cloud-aiplatform"
 version = "1.160.0"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.13.*' and sys_platform == 'win32'",
+    "python_full_version == '3.13.*' and sys_platform == 'emscripten'",
+    "python_full_version == '3.13.*' and sys_platform == 'darwin'",
+    "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'emscripten'",
+    "python_full_version < '3.13' and sys_platform == 'darwin'",
+    "python_full_version < '3.13' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 dependencies = [
-    { name = "certifi" },
-    { name = "docstring-parser" },
-    { name = "google-api-core", extra = ["grpc"] },
-    { name = "google-auth" },
-    { name = "google-cloud-bigquery" },
-    { name = "google-cloud-resource-manager" },
-    { name = "google-cloud-storage" },
-    { name = "google-genai" },
-    { name = "packaging" },
-    { name = "proto-plus" },
-    { name = "protobuf" },
-    { name = "pydantic" },
-    { name = "typing-extensions" },
+    { name = "certifi", marker = "python_full_version < '3.14'" },
+    { name = "docstring-parser", marker = "python_full_version < '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version < '3.14'" },
+    { name = "google-auth", marker = "python_full_version < '3.14'" },
+    { name = "google-cloud-bigquery", marker = "python_full_version < '3.14'" },
+    { name = "google-cloud-resource-manager", marker = "python_full_version < '3.14'" },
+    { name = "google-cloud-storage", version = "3.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "google-genai", version = "2.10.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "packaging", marker = "python_full_version < '3.14'" },
+    { name = "proto-plus", marker = "python_full_version < '3.14'" },
+    { name = "protobuf", marker = "python_full_version < '3.14'" },
+    { name = "pydantic", marker = "python_full_version < '3.14'" },
+    { name = "typing-extensions", marker = "python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d6/c5/dad5053ce2bbf53079274c4781f7bdf45d1f85bfe0ea8fad88cd39fad52d/google_cloud_aiplatform-1.160.0.tar.gz", hash = "sha256:186a8db5099eda0e3cd3ecc73a4716d48c82fa1f00501582eacd541a6aa60534", size = 11174223, upload-time = "2026-07-08T00:48:13.036Z" }
 wheels = [
@@ -1161,7 +1294,8 @@ name = "google-cloud-bigquery"
 version = "3.42.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "google-api-core", extra = ["grpc"] },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version < '3.14'" },
     { name = "google-auth", extra = ["pyopenssl"] },
     { name = "google-cloud-core" },
     { name = "google-resumable-media" },
@@ -1179,7 +1313,8 @@ name = "google-cloud-core"
 version = "2.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "google-api-core" },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
     { name = "google-auth" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a8/dd/1eef226e470369b26824a505c34482c0b493bc35fe8e0c6b003b5feca21a/google_cloud_core-2.6.0.tar.gz", hash = "sha256:e76149739f90fac1fc6757c09f47eaccb3145b54adbd7759b0f7c4b235f46c83", size = 36001, upload-time = "2026-05-07T08:04:04.124Z" }
@@ -1192,7 +1327,8 @@ name = "google-cloud-resource-manager"
 version = "1.18.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "google-api-core", extra = ["grpc"] },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version < '3.14'" },
     { name = "google-auth" },
     { name = "grpc-google-iam-v1" },
     { name = "grpcio" },
@@ -1206,15 +1342,48 @@ wheels = [
 
 [[package]]
 name = "google-cloud-storage"
+version = "3.4.1"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "python_full_version >= '3.14' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-auth", marker = "python_full_version >= '3.14'" },
+    { name = "google-cloud-core", marker = "python_full_version >= '3.14'" },
+    { name = "google-crc32c", marker = "python_full_version >= '3.14'" },
+    { name = "google-resumable-media", marker = "python_full_version >= '3.14'" },
+    { name = "requests", marker = "python_full_version >= '3.14'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/bd/ef/7cefdca67a6c8b3af0ec38612f9e78e5a9f6179dd91352772ae1a9849246/google_cloud_storage-3.4.1.tar.gz", hash = "sha256:6f041a297e23a4b485fad8c305a7a6e6831855c208bcbe74d00332a909f82268", size = 17238203, upload-time = "2025-10-08T18:43:39.665Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/83/6e/b47d83d3a35231c6232566341b0355cce78fd4e6988a7343725408547b2c/google_cloud_storage-3.4.1-py3-none-any.whl", hash = "sha256:972764cc0392aa097be8f49a5354e22eb47c3f62370067fb1571ffff4a1c1189", size = 290142, upload-time = "2025-10-08T18:43:37.524Z" },
+]
+
+[[package]]
+name = "google-cloud-storage"
 version = "3.12.1"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.13.*' and sys_platform == 'win32'",
+    "python_full_version == '3.13.*' and sys_platform == 'emscripten'",
+    "python_full_version == '3.13.*' and sys_platform == 'darwin'",
+    "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'emscripten'",
+    "python_full_version < '3.13' and sys_platform == 'darwin'",
+    "python_full_version < '3.13' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 dependencies = [
-    { name = "google-api-core" },
-    { name = "google-auth" },
-    { name = "google-cloud-core" },
-    { name = "google-crc32c" },
-    { name = "google-resumable-media" },
-    { name = "requests" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "google-auth", marker = "python_full_version < '3.14'" },
+    { name = "google-cloud-core", marker = "python_full_version < '3.14'" },
+    { name = "google-crc32c", marker = "python_full_version < '3.14'" },
+    { name = "google-resumable-media", marker = "python_full_version < '3.14'" },
+    { name = "requests", marker = "python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/da/ac/60b4cb0a6c8c6bb7cedb8971ba5e34a94096acf76e2cc242bcf1e6fc5c49/google_cloud_storage-3.12.1.tar.gz", hash = "sha256:1d81491c7663bc26c5056d00b834356f2253b910ef467f9cf9928a87fca1e04b", size = 17339353, upload-time = "2026-07-08T17:03:59.142Z" }
 wheels = [
@@ -1223,18 +1392,19 @@ wheels = [
 
 [[package]]
 name = "google-cloud-vectorsearch"
-version = "0.11.1"
+version = "0.11.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "google-api-core", extra = ["grpc"] },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, extra = ["grpc"], marker = "python_full_version < '3.14'" },
     { name = "google-auth" },
     { name = "grpcio" },
     { name = "proto-plus" },
     { name = "protobuf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/28/e3/57c1b128db5b376e79f477bb1fa0f221ead3245c1a9c9a47e07ffee9cf01/google_cloud_vectorsearch-0.11.1.tar.gz", hash = "sha256:fb4723a6668fc633a1e780dec85f436a417228f346b25477afbcf288c311c393", size = 420502, upload-time = "2026-06-25T23:39:51.32Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/8a/1f7c520113b639a5c9af3e68fe834a1e99e22d0bc8741fdbc2d21e554d94/google_cloud_vectorsearch-0.11.0.tar.gz", hash = "sha256:2946439c176576c5e399430cc78a3f843b6d7c1b9c1a914f06bcae20f32f3ced", size = 419130, upload-time = "2026-06-03T16:14:12.222Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ab/84/35ba064d3b9a4a2ccd917e374941670ebab016e3210b3f024bb1cee4e736/google_cloud_vectorsearch-0.11.1-py3-none-any.whl", hash = "sha256:005e3829e0303853ffa114483283b6bc747537b155fc90aca36e815d1c649ec3", size = 356382, upload-time = "2026-06-25T23:39:20.86Z" },
+    { url = "https://files.pythonhosted.org/packages/1f/b7/db4ee17c4c028176ab6bc189875c9f304464a2ae77f2f7465a3a1eea2bda/google_cloud_vectorsearch-0.11.0-py3-none-any.whl", hash = "sha256:01e4d1238b94cbdd3b374a95ff80a0f3f730a725802b305bdd29137a65b499ce", size = 354990, upload-time = "2026-06-03T16:12:54Z" },
 ]
 
 [[package]]
@@ -1262,23 +1432,79 @@ wheels = [
 
 [[package]]
 name = "google-genai"
+version = "1.75.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.14' and sys_platform == 'win32'",
+    "python_full_version >= '3.14' and sys_platform == 'emscripten'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "anyio", marker = "python_full_version >= '3.14'" },
+    { name = "distro", marker = "python_full_version >= '3.14'" },
+    { name = "google-auth", extra = ["requests"], marker = "python_full_version >= '3.14'" },
+    { name = "httpx", marker = "python_full_version >= '3.14'" },
+    { name = "pydantic", marker = "python_full_version >= '3.14'" },
+    { name = "requests", marker = "python_full_version >= '3.14'" },
+    { name = "sniffio", marker = "python_full_version >= '3.14'" },
+    { name = "tenacity", marker = "python_full_version >= '3.14'" },
+    { name = "typing-extensions", marker = "python_full_version >= '3.14'" },
+    { name = "websockets", marker = "python_full_version >= '3.14'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9d/59/3ed61240ef20b3ae6ed54e82c6f8b6d1f194947bc6679679dd6cdb037594/google_genai-1.75.0.tar.gz", hash = "sha256:56bac3991b311c93f980c0a2abcd287b672146905df1fbd71c92ed633d5a07cf", size = 539039, upload-time = "2026-05-04T22:48:54.857Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2d/b6/552d40e96da22921eb1fead7c14b00b5b5473a20e45959488660fab35ee2/google_genai-1.75.0-py3-none-any.whl", hash = "sha256:8dc4c096e7d6288c3087f6893f582fe52468932464781edb8193bd92b9fefb2c", size = 793726, upload-time = "2026-05-04T22:48:53.033Z" },
+]
+
+[[package]]
+name = "google-genai"
 version = "2.10.0"
 source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.13.*' and sys_platform == 'win32'",
+    "python_full_version == '3.13.*' and sys_platform == 'emscripten'",
+    "python_full_version == '3.13.*' and sys_platform == 'darwin'",
+    "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and sys_platform == 'emscripten'",
+    "python_full_version < '3.13' and sys_platform == 'darwin'",
+    "python_full_version < '3.13' and sys_platform != 'darwin' and sys_platform != 'emscripten' and sys_platform != 'win32'",
+]
 dependencies = [
-    { name = "anyio" },
-    { name = "distro" },
-    { name = "google-auth", extra = ["requests"] },
-    { name = "httpx" },
-    { name = "pydantic" },
-    { name = "requests" },
-    { name = "sniffio" },
-    { name = "tenacity" },
-    { name = "typing-extensions" },
-    { name = "websockets" },
+    { name = "anyio", marker = "python_full_version < '3.14'" },
+    { name = "distro", marker = "python_full_version < '3.14'" },
+    { name = "google-auth", extra = ["requests"], marker = "python_full_version < '3.14'" },
+    { name = "httpx", marker = "python_full_version < '3.14'" },
+    { name = "pydantic", marker = "python_full_version < '3.14'" },
+    { name = "requests", marker = "python_full_version < '3.14'" },
+    { name = "sniffio", marker = "python_full_version < '3.14'" },
+    { name = "tenacity", marker = "python_full_version < '3.14'" },
+    { name = "typing-extensions", marker = "python_full_version < '3.14'" },
+    { name = "websockets", marker = "python_full_version < '3.14'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/cd/fe/b796087493c3c55371aa58b9f264841ace5bfdf8c668cafa7afa33c44bec/google_genai-2.10.0.tar.gz", hash = "sha256:77912cd558cd7dfd5b75c25fd1c609e78d7954dde583331104022a46ea90f9ee", size = 600039, upload-time = "2026-06-24T01:33:18.157Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e0/39/00bcfd94de255d24249401efff4f48d77bf6066b46447e519fa193c0c299/google_genai-2.10.0-py3-none-any.whl", hash = "sha256:d5350311567ae660c24cbc1752aee4b3d660f89c0106d2dcd2a69978c35afe1e", size = 957974, upload-time = "2026-06-24T01:33:16.296Z" },
+]
+
+[[package]]
+name = "google-generativeai"
+version = "0.8.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "google-ai-generativelanguage" },
+    { name = "google-api-core", version = "2.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-api-core", version = "2.31.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "google-api-python-client" },
+    { name = "google-auth" },
+    { name = "protobuf" },
+    { name = "pydantic" },
+    { name = "tqdm" },
+    { name = "typing-extensions" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/97/0f/ef33b5bb71437966590c6297104c81051feae95d54b11ece08533ef937d3/google_generativeai-0.8.6-py3-none-any.whl", hash = "sha256:37a0eaaa95e5bbf888828e20a4a1b2c196cc9527d194706e58a68ff388aeb0fa", size = 155098, upload-time = "2025-12-16T17:53:58.61Z" },
 ]
 
 [[package]]
@@ -1439,16 +1665,16 @@ wheels = [
 
 [[package]]
 name = "grpcio-status"
-version = "1.81.1"
+version = "1.71.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "googleapis-common-protos" },
     { name = "grpcio" },
     { name = "protobuf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/32/26/0aa9168c87882381fd810d140c279a2490ed6aee655f0515d6f56c5ca404/grpcio_status-1.81.1.tar.gz", hash = "sha256:9389a03e746017b10f0630c064289201458f3ce01f5d7ef4b0bebc1ef6cf82ad", size = 13923, upload-time = "2026-06-11T12:58:48.636Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fd/d1/b6e9877fedae3add1afdeae1f89d1927d296da9cf977eca0eb08fb8a460e/grpcio_status-1.71.2.tar.gz", hash = "sha256:c7a97e176df71cdc2c179cd1847d7fc86cca5832ad12e9798d7fed6b7a1aab50", size = 13677, upload-time = "2025-06-28T04:24:05.426Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/5e/5abfec5f7e89d3b7993d57cfb025ca5f968a2c18656d7fcda2b6919440b9/grpcio_status-1.81.1-py3-none-any.whl", hash = "sha256:08072fa9995f4a95c647fc6f4f85e2411573d00087bcabdf30f260114338f232", size = 14638, upload-time = "2026-06-11T12:58:31.982Z" },
+    { url = "https://files.pythonhosted.org/packages/67/58/317b0134129b556a93a3b0afe00ee675b5657f0155509e22fcb853bafe2d/grpcio_status-1.71.2-py3-none-any.whl", hash = "sha256:803c98cb6a8b7dc6dbb785b1111aed739f241ab5e9da0bba96888aa74704cfd3", size = 14424, upload-time = "2025-06-28T04:23:42.136Z" },
 ]
 
 [[package]]
@@ -1506,6 +1732,18 @@ wheels = [
 ]
 
 [[package]]
+name = "httplib2"
+version = "0.32.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyparsing" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/84/f5/ccf58de92d61e3ad921119668f54ed36ca1d0cf5dcc5c1657dfb164fd78b/httplib2-0.32.0.tar.gz", hash = "sha256:48a0ef30a42db65d8f3399045e1d09ab0ba66e3b9efc360d07f80ea55d286025", size = 254283, upload-time = "2026-06-26T10:13:56.265Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/33/a0/550eec327e5f5c7b732531c489f5307efec41f047b0d703bd4ca1e5ad2db/httplib2-0.32.0-py3-none-any.whl", hash = "sha256:dc6705cacdf3fb0a2aba7629fa33c90fd93e30035db0c157325826be177e4816", size = 93148, upload-time = "2026-06-26T10:13:54.985Z" },
+]
+
+[[package]]
 name = "httpx"
 version = "0.28.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1556,6 +1794,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/cd/63/9496c57188a2ee585e0f1db071d75089a11e98aa86eb99d9d7618fc1edce/idna-3.18.tar.gz", hash = "sha256:ffb385a7e039654cef1ab9ef32c6fafe283c0c0467bba1d9029738ce4a14a848", size = 196711, upload-time = "2026-06-02T14:34:07.794Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1e/5e/d4e9f1a599fb8e573b7b87160658329fbf28d19eac2718f51fc3def3aa5a/idna-3.18-py3-none-any.whl", hash = "sha256:7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2", size = 65455, upload-time = "2026-06-02T14:34:06.319Z" },
+]
+
+[[package]]
+name = "iniconfig"
+version = "2.3.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/72/34/14ca021ce8e5dfedc35312d08ba8bf51fdd999c576889fc2c24cb97f4f10/iniconfig-2.3.0.tar.gz", hash = "sha256:c76315c77db068650d49c5b56314774a7804df16fee4402c1f19d6d15d8c4730", size = 20503, upload-time = "2025-10-18T21:55:43.219Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cb/b1/3846dd7f199d53cb17f49cba7e651e9ce294d8497c8c150530ed11865bb8/iniconfig-2.3.0-py3-none-any.whl", hash = "sha256:f631c04d2c48c52b84d0d0549c99ff3859c98df65b3101406327ecc7d53fbf12", size = 7484, upload-time = "2025-10-18T21:55:41.639Z" },
 ]
 
 [[package]]
@@ -1822,8 +2069,10 @@ version = "3.2.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "bottleneck" },
-    { name = "google-cloud-aiplatform" },
-    { name = "google-cloud-storage" },
+    { name = "google-cloud-aiplatform", version = "1.148.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-cloud-aiplatform", version = "1.160.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "google-cloud-storage", version = "3.4.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+    { name = "google-cloud-storage", version = "3.12.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
     { name = "google-cloud-vectorsearch" },
     { name = "httpx" },
     { name = "httpx-sse" },
@@ -3239,17 +3488,16 @@ wheels = [
 
 [[package]]
 name = "protobuf"
-version = "6.33.6"
+version = "5.29.6"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/66/70/e908e9c5e52ef7c3a6c7902c9dfbb34c7e29c25d2f81ade3856445fd5c94/protobuf-6.33.6.tar.gz", hash = "sha256:a6768d25248312c297558af96a9f9c929e8c4cee0659cb07e780731095f38135", size = 444531, upload-time = "2026-03-18T19:05:00.988Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7e/57/394a763c103e0edf87f0938dafcd918d53b4c011dfc5c8ae80f3b0452dbb/protobuf-5.29.6.tar.gz", hash = "sha256:da9ee6a5424b6b30fd5e45c5ea663aef540ca95f9ad99d1e887e819cdf9b8723", size = 425623, upload-time = "2026-02-04T22:54:40.584Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/9f/2f509339e89cfa6f6a4c4ff50438db9ca488dec341f7e454adad60150b00/protobuf-6.33.6-cp310-abi3-win32.whl", hash = "sha256:7d29d9b65f8afef196f8334e80d6bc1d5d4adedb449971fefd3723824e6e77d3", size = 425739, upload-time = "2026-03-18T19:04:48.373Z" },
-    { url = "https://files.pythonhosted.org/packages/76/5d/683efcd4798e0030c1bab27374fd13a89f7c2515fb1f3123efdfaa5eab57/protobuf-6.33.6-cp310-abi3-win_amd64.whl", hash = "sha256:0cd27b587afca21b7cfa59a74dcbd48a50f0a6400cfb59391340ad729d91d326", size = 437089, upload-time = "2026-03-18T19:04:50.381Z" },
-    { url = "https://files.pythonhosted.org/packages/5c/01/a3c3ed5cd186f39e7880f8303cc51385a198a81469d53d0fdecf1f64d929/protobuf-6.33.6-cp39-abi3-macosx_10_9_universal2.whl", hash = "sha256:9720e6961b251bde64edfdab7d500725a2af5280f3f4c87e57c0208376aa8c3a", size = 427737, upload-time = "2026-03-18T19:04:51.866Z" },
-    { url = "https://files.pythonhosted.org/packages/ee/90/b3c01fdec7d2f627b3a6884243ba328c1217ed2d978def5c12dc50d328a3/protobuf-6.33.6-cp39-abi3-manylinux2014_aarch64.whl", hash = "sha256:e2afbae9b8e1825e3529f88d514754e094278bb95eadc0e199751cdd9a2e82a2", size = 324610, upload-time = "2026-03-18T19:04:53.096Z" },
-    { url = "https://files.pythonhosted.org/packages/9b/ca/25afc144934014700c52e05103c2421997482d561f3101ff352e1292fb81/protobuf-6.33.6-cp39-abi3-manylinux2014_s390x.whl", hash = "sha256:c96c37eec15086b79762ed265d59ab204dabc53056e3443e702d2681f4b39ce3", size = 339381, upload-time = "2026-03-18T19:04:54.616Z" },
-    { url = "https://files.pythonhosted.org/packages/16/92/d1e32e3e0d894fe00b15ce28ad4944ab692713f2e7f0a99787405e43533a/protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl", hash = "sha256:e9db7e292e0ab79dd108d7f1a94fe31601ce1ee3f7b79e0692043423020b0593", size = 323436, upload-time = "2026-03-18T19:04:55.768Z" },
-    { url = "https://files.pythonhosted.org/packages/c4/72/02445137af02769918a93807b2b7890047c32bfb9f90371cbc12688819eb/protobuf-6.33.6-py3-none-any.whl", hash = "sha256:77179e006c476e69bf8e8ce866640091ec42e1beb80b213c3900006ecfba6901", size = 170656, upload-time = "2026-03-18T19:04:59.826Z" },
+    { url = "https://files.pythonhosted.org/packages/d4/88/9ee58ff7863c479d6f8346686d4636dd4c415b0cbeed7a6a7d0617639c2a/protobuf-5.29.6-cp310-abi3-win32.whl", hash = "sha256:62e8a3114992c7c647bce37dcc93647575fc52d50e48de30c6fcb28a6a291eb1", size = 423357, upload-time = "2026-02-04T22:54:25.805Z" },
+    { url = "https://files.pythonhosted.org/packages/1c/66/2dc736a4d576847134fb6d80bd995c569b13cdc7b815d669050bf0ce2d2c/protobuf-5.29.6-cp310-abi3-win_amd64.whl", hash = "sha256:7e6ad413275be172f67fdee0f43484b6de5a904cc1c3ea9804cb6fe2ff366eda", size = 435175, upload-time = "2026-02-04T22:54:28.592Z" },
+    { url = "https://files.pythonhosted.org/packages/06/db/49b05966fd208ae3f44dcd33837b6243b4915c57561d730a43f881f24dea/protobuf-5.29.6-cp38-abi3-macosx_10_9_universal2.whl", hash = "sha256:b5a169e664b4057183a34bdc424540e86eea47560f3c123a0d64de4e137f9269", size = 418619, upload-time = "2026-02-04T22:54:30.266Z" },
+    { url = "https://files.pythonhosted.org/packages/b7/d7/48cbf6b0c3c39761e47a99cb483405f0fde2be22cf00d71ef316ce52b458/protobuf-5.29.6-cp38-abi3-manylinux2014_aarch64.whl", hash = "sha256:a8866b2cff111f0f863c1b3b9e7572dc7eaea23a7fae27f6fc613304046483e6", size = 320284, upload-time = "2026-02-04T22:54:31.782Z" },
+    { url = "https://files.pythonhosted.org/packages/e3/dd/cadd6ec43069247d91f6345fa7a0d2858bef6af366dbd7ba8f05d2c77d3b/protobuf-5.29.6-cp38-abi3-manylinux2014_x86_64.whl", hash = "sha256:e3387f44798ac1106af0233c04fb8abf543772ff241169946f698b3a9a3d3ab9", size = 320478, upload-time = "2026-02-04T22:54:32.909Z" },
+    { url = "https://files.pythonhosted.org/packages/5a/cb/e3065b447186cb70aa65acc70c86baf482d82bf75625bf5a2c4f6919c6a3/protobuf-5.29.6-py3-none-any.whl", hash = "sha256:6b9edb641441b2da9fa8f428760fc136a49cf97a52076010cf22a2ff73438a86", size = 173126, upload-time = "2026-02-04T22:54:39.462Z" },
 ]
 
 [[package]]
@@ -3503,6 +3751,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5d/ab/34ec41718af73c00119d0351b7a2531d2ebddb51833a36448fc7b862be60/pylatexenc-2.10.tar.gz", hash = "sha256:3dd8fd84eb46dc30bee1e23eaab8d8fb5a7f507347b23e5f38ad9675c84f40d3", size = 162597, upload-time = "2021-04-06T07:56:07.854Z" }
 
 [[package]]
+name = "pyparsing"
+version = "3.3.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f3/91/9c6ee907786a473bf81c5f53cf703ba0957b23ab84c264080fb5a450416f/pyparsing-3.3.2.tar.gz", hash = "sha256:c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc", size = 6851574, upload-time = "2026-01-21T03:57:59.36Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl", hash = "sha256:850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d", size = 122781, upload-time = "2026-01-21T03:57:55.912Z" },
+]
+
+[[package]]
 name = "pypdf"
 version = "6.14.2"
 source = { registry = "https://pypi.org/simple" }
@@ -3538,6 +3795,22 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/28/01/e445a77e784a5b0047a2c30b263630dfaa57318ff3196e6ad3093dca6929/pypdfium2-5.11.0-py3-none-win32.whl", hash = "sha256:324054f36acf6bea42a9d2534eb407da2e312dba746d955c9fd7e324bc160898", size = 3645281, upload-time = "2026-06-29T11:11:33.691Z" },
     { url = "https://files.pythonhosted.org/packages/73/d4/8b8af6eedbc5c8af49817d8f37c2e55be8a2c7f75fca9bee78efbfeb40f6/pypdfium2-5.11.0-py3-none-win_amd64.whl", hash = "sha256:d3b698e7b51bdf2d633cc834395677319e1d66757896b30c632dfac7d7236c81", size = 3778234, upload-time = "2026-06-29T11:11:35.64Z" },
     { url = "https://files.pythonhosted.org/packages/c5/a7/657503553694c70fba0aa5d213144d80401611c82e0205f43f1ff39f40af/pypdfium2-5.11.0-py3-none-win_arm64.whl", hash = "sha256:897788d71b740752e29875856c369fdb52283f609aecf2355f0473db05dfc1b6", size = 3567726, upload-time = "2026-06-29T11:11:38.689Z" },
+]
+
+[[package]]
+name = "pytest"
+version = "9.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "iniconfig" },
+    { name = "packaging" },
+    { name = "pluggy" },
+    { name = "pygments" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e4/47/b9efed96c114afcfa3c9d3fe98a76a1d14c74a9e266d397cf6eb64be5e01/pytest-9.1.1.tar.gz", hash = "sha256:1088fbde8f2b49d95a549a195707afa7a76a3ce9bcadc26b6d71f0ffda5fe313", size = 1636369, upload-time = "2026-06-19T10:58:32.857Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/24/25/1de2678b631f5a49215c6c96fff41ba892b0a34df68d6d80292b1b48aa7f/pytest-9.1.1-py3-none-any.whl", hash = "sha256:37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c", size = 386536, upload-time = "2026-06-19T10:58:31.347Z" },
 ]
 
 [[package]]
@@ -4763,6 +5036,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ba/19/1b9b0e29f30c6d35cb345486df41110984ea67ae69dddbc0e8a100999493/tzdata-2026.2.tar.gz", hash = "sha256:9173fde7d80d9018e02a662e168e5a2d04f87c41ea174b139fbef642eda62d10", size = 198254, upload-time = "2026-04-24T15:22:08.651Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ce/e4/dccd7f47c4b64213ac01ef921a1337ee6e30e8c6466046018326977efd95/tzdata-2026.2-py2.py3-none-any.whl", hash = "sha256:bbe9af844f658da81a5f95019480da3a89415801f6cc966806612cc7169bffe7", size = 349321, upload-time = "2026-04-24T15:22:05.876Z" },
+]
+
+[[package]]
+name = "uritemplate"
+version = "4.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/98/60/f174043244c5306c9988380d2cb10009f91563fc4b31293d27e17201af56/uritemplate-4.2.0.tar.gz", hash = "sha256:480c2ed180878955863323eea31b0ede668795de182617fef9c6ca09e6ec9d0e", size = 33267, upload-time = "2025-06-02T15:12:06.318Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a9/99/3ae339466c9183ea5b8ae87b34c0b897eda475d2aec2307cae60e5cd4f29/uritemplate-4.2.0-py3-none-any.whl", hash = "sha256:962201ba1c4edcab02e60f9a0d3821e82dfc5d2d6662a21abd533879bdb8a686", size = 11488, upload-time = "2025-06-02T15:12:03.405Z" },
 ]
 
 [[package]]
